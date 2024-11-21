@@ -1,0 +1,6 @@
+*
+!/background
+!/content
+!/popup
+!/.gitignore
+!/vite-env.d.ts

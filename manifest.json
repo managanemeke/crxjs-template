@@ -1,0 +1,21 @@
+{
+  "manifest_version": 3,
+  "name": "app",
+  "description": "app",
+  "version": "0.0.0",
+  "action": {
+    "default_popup": "src/popup/index.html"
+  },
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "src/background/main.ts"
+  },
+  "content_scripts": [
+    {
+      "js": ["src/content/main.ts"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}

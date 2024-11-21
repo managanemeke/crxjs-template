@@ -1,0 +1,11 @@
+*
+!/public
+!/src
+!/.env.example
+!/.gitignore
+!/.npmrc
+!/.yarnrc
+!/manifest.json
+!/package.json
+!/tsconfig.json
+!/vite.config.js
