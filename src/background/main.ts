@@ -1,7 +1,8 @@
-import {CONTEXT_API_URLS_PATTERN} from "../content/config";
+import {CONTEXT_API_URLS_PATTERN} from "@/shared/config";
 import WebRequestHeadersDetails = chrome.webRequest.WebRequestHeadersDetails;
 import WebRequestBodyDetails = chrome.webRequest.WebRequestBodyDetails;
 import BlockingResponse = chrome.webRequest.BlockingResponse;
+import Advice from "@/shared/Advice";
 
 class Main {
   constructor() {
@@ -12,7 +13,7 @@ class Main {
           CONTEXT_API_URLS_PATTERN
         ]
       },
-      ['requestHeaders']
+      ["requestHeaders"]
     );
     chrome.webRequest.onBeforeRequest.addListener(
       Main.sendRequestBodyMessageToContentScript,
@@ -21,7 +22,7 @@ class Main {
           CONTEXT_API_URLS_PATTERN
         ]
       },
-      ['requestBody']
+      ["requestBody"]
     );
   }
 
@@ -36,8 +37,8 @@ class Main {
         if (tabId) {
           chrome.tabs.sendMessage(
             tabId,
-            {
-              name: 'requestHeaders',
+            <Advice>{
+              name: "requestHeaders",
               details: details
             }
           ).then();
@@ -57,8 +58,8 @@ class Main {
         if (tabId) {
           chrome.tabs.sendMessage(
             tabId,
-            {
-              name: 'requestBody',
+            <Advice>{
+              name: "requestBody",
               details: details
             }
           ).then();

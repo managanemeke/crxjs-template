@@ -5,6 +5,7 @@
 !/.gitignore
 !/.npmrc
 !/.yarnrc
+!/eslint.config.mjs
 !/manifest.json
 !/package.json
 !/tsconfig.json

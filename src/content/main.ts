@@ -1,7 +1,8 @@
 import HttpHeader = chrome.webRequest.HttpHeader;
 import {default as RawChallengeMessage} from "./messages/receive/challenge/Raw";
 import {default as ValidChallengeIdentityMessage} from "./messages/send/challenge-identity/Valid";
-import {CREATE_CHALLENGE_URL} from "./config";
+import {CREATE_CHALLENGE_URL} from "@/shared/config";
+import Advice from "@/shared/Advice";
 
 class Main {
   private static challenges: Array<ValidChallengeIdentityMessage> = [];
@@ -10,66 +11,83 @@ class Main {
     chrome.runtime.onMessage.addListener(Main.messageHandler);
   }
 
-  private static messageHandler(message: any): void {
-    switch (message.name) {
-      case 'requestHeaders':
-        Main.handleRequestHeaders(message);
+  private static messageHandler(advice: Advice): void {
+    switch (advice.name) {
+      case "requestHeaders":
+        Main.handleRequestHeaders(advice);
         break;
-      case 'requestBody':
-        Main.handleRequestBody(message);
+      case "requestBody":
+        Main.handleRequestBody(advice);
         break;
       default:
         break;
     }
   }
 
-  private static handleRequestHeaders(message: any) {
-    switch (message.details.url) {
+  private static handleRequestHeaders(advice: Advice) {
+    const requestId = Number(advice.details.requestId);
+    const url = advice.details.url;
+    if (
+      !requestId
+      || !("requestHeaders" in advice.details)
+      || !advice.details.requestHeaders
+    ) {
+      return;
+    }
+    switch (url) {
       default:
-        Main.challenges[message.details.requestId].token = Main.token(message.details.requestHeaders);
+        Main.challenges[requestId].token = Main.token(advice.details.requestHeaders);
         Main.sendChallengeIdentityMessage(
-          Main.challenges[message.details.requestId]
+          Main.challenges[requestId]
         ).then();
         break;
     }
   }
 
-  private static handleRequestBody(message: any) {
-    switch (message.details.url) {
+  private static handleRequestBody(advice: Advice) {
+    const requestId = Number(advice.details.requestId);
+    const url = advice.details.url;
+    if (
+      !requestId
+      || !("requestBody" in advice.details)
+      || !advice.details.requestBody
+    ) {
+      return;
+    }
+    switch (url) {
       default:
-        Main.challenges[message.details.requestId] = new ValidChallengeIdentityMessage({
+        Main.challenges[requestId] = new ValidChallengeIdentityMessage({
           token: undefined,
-          timestamp: Number(message.details.timeStamp),
-          method: message.details.method,
-          url: message.details.url,
-          body: message.details.requestBody ? JSON.stringify(message.details.requestBody) : undefined,
+          timestamp: Number(advice.details.timeStamp),
+          method: advice.details.method,
+          url: url,
+          body: advice.details.requestBody ? JSON.stringify(advice.details.requestBody) : undefined,
         });
         break;
     }
   }
 
-
   private static token(headers: Array<HttpHeader>): string {
-    for (let header of headers) {
-      if (header.name === 'Authorization') {
+    for (const header of headers) {
+      if (header.name === "Authorization") {
         const authorization = header.value;
         if (authorization) {
-            const pattern = /^Bearer (\S*)$/;
-            const match = authorization.match(pattern);
-            if (match) {
-                return String(match[1]);
-            }
+          const pattern = /^Bearer (\S*)$/;
+          const match = authorization.match(pattern);
+          if (match) {
+            return String(match[1]);
+          }
         }
       }
     }
-    return '';
+    return "";
   }
 
   private static async sendChallengeIdentityMessage(message: ValidChallengeIdentityMessage): Promise<RawChallengeMessage> {
     const response = await window.fetch(CREATE_CHALLENGE_URL, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json"
       },
       body: JSON.stringify(message),
     });
