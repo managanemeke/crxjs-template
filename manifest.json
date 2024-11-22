@@ -6,8 +6,14 @@
   "action": {
     "default_popup": "src/popup/index.html"
   },
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "nativeMessaging",
+    "webRequest"
+  ],
   "host_permissions": [
-    "<all_urls>"
+    "https://context.maergroup.ru/*"
   ],
   "background": {
     "service_worker": "src/background/main.ts"
@@ -15,7 +21,7 @@
   "content_scripts": [
     {
       "js": ["src/content/main.ts"],
-      "matches": ["<all_urls>"]
+      "matches": ["https://context.maergroup.ru/*"]
     }
   ]
 }
