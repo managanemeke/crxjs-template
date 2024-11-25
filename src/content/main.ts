@@ -31,15 +31,17 @@ class Main {
       !requestId
       || !("requestHeaders" in advice.details)
       || !advice.details.requestHeaders
+      || !(requestId in Main.challenges)
     ) {
       return;
     }
+    const token = Main.token(advice.details.requestHeaders);
     switch (url) {
       default:
-        Main.challenges[requestId].token = Main.token(advice.details.requestHeaders);
+        Main.challenges[requestId].token = token;
         Main.sendChallengeIdentityMessage(
           Main.challenges[requestId]
-        ).then();
+        );
         break;
     }
   }
@@ -47,11 +49,13 @@ class Main {
   private static handleRequestBody(advice: Advice) {
     const requestId = Number(advice.details.requestId);
     const url = advice.details.url;
-    if (
-      !requestId
-      || !("requestBody" in advice.details)
-      || !advice.details.requestBody
-    ) {
+    let requestBody;
+    if ("requestBody" in advice.details) {
+      requestBody = advice.details.requestBody ?? null;
+    } else {
+      requestBody = null;
+    }
+    if (!requestId) {
       return;
     }
     switch (url) {
@@ -61,13 +65,16 @@ class Main {
           timestamp: Number(advice.details.timeStamp),
           method: advice.details.method,
           url: url,
-          body: advice.details.requestBody ? JSON.stringify(advice.details.requestBody) : undefined,
+          body: requestBody ? JSON.stringify(requestBody) : undefined,
         });
         break;
     }
   }
 
-  private static token(headers: Array<HttpHeader>): string {
+  private static token(headers?: Array<HttpHeader>): string | null {
+    if (!headers) {
+      return null;
+    }
     for (const header of headers) {
       if (header.name === "Authorization") {
         const authorization = header.value;
@@ -80,7 +87,7 @@ class Main {
         }
       }
     }
-    return "";
+    return null;
   }
 
   private static async sendChallengeIdentityMessage(message: ValidChallengeIdentityMessage): Promise<RawChallengeMessage> {
