@@ -14,8 +14,8 @@
   },
   "content_scripts": [
     {
-      "js": ["src/content/main.ts"],
-      "matches": ["<all_urls>"]
+      "js": ["src/content/main.tsx"],
+      "matches": ["https://example.com/*"]
     }
   ]
 }
