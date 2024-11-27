@@ -10,11 +10,11 @@
     "<all_urls>"
   ],
   "background": {
-    "service_worker": "src/background/main.ts"
+    "service_worker": "src/background/index.ts"
   },
   "content_scripts": [
     {
-      "js": ["src/content/main.tsx"],
+      "js": ["src/content/index.tsx"],
       "matches": ["https://example.com/*"]
     }
   ]

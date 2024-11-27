@@ -1,5 +1,7 @@
-export class Logger {
+export class Index {
   constructor() {
     console.log("background");
   }
 }
+
+new Index();

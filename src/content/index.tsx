@@ -2,7 +2,7 @@ import App from "../all/app/App";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 
-export class Main {
+export class Index {
   constructor() {
     this.placeApp();
   }
@@ -17,4 +17,4 @@ export class Main {
   }
 }
 
-new Main();
+new Index();
