@@ -1,9 +1,8 @@
 import "./App.css";
 import { useState } from "react";
 
-const [count, setCount] = useState(0);
-
 export default function App() {
+  const [count, setCount] = useState(0);
   return (
     <div>
       <h1>Vite + React</h1>
