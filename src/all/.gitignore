@@ -1,0 +1,5 @@
+*
+!/app
+!/.gitignore
+!/index.css
+!/index.tsx
