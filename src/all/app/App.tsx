@@ -1,7 +1,7 @@
 import "./App.css";
 import { useState } from "react";
 import { Button } from "shared/ui/Button";
-import { FullScreen, useFullScreenHandle } from "react-full-screen";
+import { FullScreen, useFullScreenHandle } from "shared/lib/react-full-screen";
 
 export default function App() {
   const [count, setCount] = useState(0);
