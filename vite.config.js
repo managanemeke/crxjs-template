@@ -5,5 +5,14 @@ import { crx } from "@crxjs/vite-plugin";
 import react from "@vitejs/plugin-react";
 
 export default defineConfig({
-  plugins: [react(), svgr(), crx({ manifest })],
+  plugins: [
+    react(),
+    svgr(),
+    crx({ manifest }),
+  ],
+  resolve: {
+    alias: {
+      "shared": "/src/all/shared",
+    },
+  },
 })

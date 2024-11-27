@@ -1,0 +1,16 @@
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+
+    line-height: 1;
+    white-space: nowrap;
+    border-radius: 4px;
+
+    background-color: #00BFFFFF;
+
+    &:hover {
+        cursor: pointer;
+    }
+}

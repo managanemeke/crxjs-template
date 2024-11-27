@@ -1,5 +1,6 @@
 *
 !/app
+!/shared
 !/.gitignore
 !/index.css
 !/index.tsx

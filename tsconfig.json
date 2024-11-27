@@ -5,6 +5,9 @@
     "module": "ESNext",
     "types": ["vite-plugin-svgr/client"],
     "baseUrl": "src",
+    "paths": {
+      "shared/*": ["all/shared/*"]
+    },
     "lib": ["ESNext", "DOM"],
     "strict": true,
     "esModuleInterop": true,
@@ -17,10 +20,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx",
-    "paths": {
-      "@/*": ["./src/*"]
-    }
+    "jsx": "react-jsx"
   },
   "include": ["src"]
 }
