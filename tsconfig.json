@@ -6,6 +6,7 @@
     "types": ["vite-plugin-svgr/client"],
     "baseUrl": "src",
     "paths": {
+      "app/*": ["all/app/*"],
       "shared/*": ["all/shared/*"]
     },
     "lib": ["ESNext", "DOM"],

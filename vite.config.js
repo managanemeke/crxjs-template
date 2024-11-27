@@ -12,6 +12,7 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
+      "app": "/src/all/app",
       "shared": "/src/all/shared",
     },
   },
