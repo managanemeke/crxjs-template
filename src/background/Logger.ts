@@ -1,5 +1,5 @@
 export class Logger {
-    constructor() {
-        console.log("background");
-    }
+  constructor() {
+    console.log("background");
+  }
 }

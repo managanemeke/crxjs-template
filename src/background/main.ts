@@ -1,9 +1,9 @@
 import {Logger} from "./Logger";
 
 export class Main {
-    constructor() {
-        new Logger();
-    }
+  constructor() {
+    new Logger();
+  }
 }
 
 new Main();

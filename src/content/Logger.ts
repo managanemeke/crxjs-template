@@ -1,5 +1,5 @@
 export class Logger {
-    constructor() {
-        console.log("content");
-    }
+  constructor() {
+    console.log("content");
+  }
 }
