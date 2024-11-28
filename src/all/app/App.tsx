@@ -1,28 +1,20 @@
 import "./App.css";
-import React, { useRef } from "react";
+import { useRef } from "react";
 import { useState } from "react";
 import { Button } from "shared/ui/Button";
 import { Panel } from "shared/ui/Panel";
 import { FullScreen, useFullScreenHandle } from "shared/lib/react-full-screen";
 import { ReactInfiniteCanvas, ReactInfiniteCanvasHandle, COMPONENT_POSITIONS } from "shared/lib/react-infinite-canvas";
-import { Checkbox } from "shared/ui/Checkbox";
+import { StructureRestrictionCheckbox } from "features/select-request-structures";
 
 export default function App() {
   const [count, setCount] = useState(0);
   const handle = useFullScreenHandle();
   const canvasRef = useRef<ReactInfiniteCanvasHandle>();
-
-  const [checked, setChecked] = React.useState(false);
-
   return (
     <div className="app">
       <h1>Vite + React</h1>
-      <Checkbox
-        checked={checked}
-        onChange={() => {
-          setChecked(!checked);
-        }}
-      />
+      <StructureRestrictionCheckbox />
       <Button onClick={() => setCount((count) => count + 1)}>{String(count)}</Button>
       <Button onClick={handle.enter}>fullscreen</Button>
       <FullScreen className="canvas" handle={handle}>
