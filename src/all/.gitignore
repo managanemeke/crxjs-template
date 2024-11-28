@@ -2,6 +2,7 @@
 !/app
 !/features
 !/shared
+!/widgets
 !/.gitignore
 !/index.css
 !/index.tsx

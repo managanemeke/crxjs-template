@@ -1,0 +1,14 @@
+*
+!/*
+!/*/*
+!/*/*/*
+
+!/*/lib/*/index.ts
+!/*/lib/*/lib.ts
+
+!/*/ui/index.ts
+!/*/ui/*/element.css
+!/*/ui/*/element.tsx
+!/*/ui/*/Interface.ts
+
+!/.gitignore

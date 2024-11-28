@@ -15,6 +15,7 @@ export default defineConfig({
       "app": "/src/all/app",
       "features": "/src/all/features",
       "shared": "/src/all/shared",
+      "widgets": "/src/all/widgets",
     },
   },
 })

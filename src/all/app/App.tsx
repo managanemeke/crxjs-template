@@ -5,7 +5,7 @@ import { Button } from "shared/ui/Button";
 import { Panel } from "shared/ui/Panel";
 import { FullScreen, useFullScreenHandle } from "shared/lib/react-full-screen";
 import { ReactInfiniteCanvas, ReactInfiniteCanvasHandle, COMPONENT_POSITIONS } from "shared/lib/react-infinite-canvas";
-import { StructureRestrictionCheckbox } from "features/select-request-structures";
+import { StructureRestrictionCheckboxes } from "widgets/StructureRestrictionCheckboxes";
 
 export default function App() {
   const [count, setCount] = useState(0);
@@ -13,8 +13,7 @@ export default function App() {
   const canvasRef = useRef<ReactInfiniteCanvasHandle>();
 
   const token = "e60f99519b4af7b4ac39d484b6b7b0c24d928c7b08d2869871f515105d633be2";
-  const request = 10643;
-  const allStructures = new Set([112]);
+  const request = 9985;
 
   return (
     <div className="app">
@@ -27,18 +26,16 @@ export default function App() {
           gridAutoFlow: "column",
         }}
       >
-        <StructureRestrictionCheckbox
-          token={token}
-          request={request}
-          currentStructures={new Set([113, 114])}
-          allStructures={allStructures}
-        />
-        <StructureRestrictionCheckbox
-          token={token}
-          request={request}
-          currentStructures={new Set([115, 116])}
-          allStructures={allStructures}
-        />
+        {
+          StructureRestrictionCheckboxes({
+            token: token,
+            request: request,
+            currentStructuresArray: [
+              new Set([113, 114]),
+              new Set([115, 116]),
+            ]
+          })
+        }
         <div>113, 114</div>
         <div>115, 116</div>
         <div>first</div>

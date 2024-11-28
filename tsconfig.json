@@ -8,7 +8,8 @@
     "paths": {
       "app/*": ["all/app/*"],
       "features/*": ["all/features/*"],
-      "shared/*": ["all/shared/*"]
+      "shared/*": ["all/shared/*"],
+      "widgets/*": ["all/widgets/*"]
     },
     "lib": ["ESNext", "DOM"],
     "strict": true,
