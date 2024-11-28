@@ -26,6 +26,7 @@ const Element = (props: Props) => {
         }
         sendMessage(props).then();
       }}
+      title={Array.from(props.currentStructures).join(", ")}
     />
   );
 }
