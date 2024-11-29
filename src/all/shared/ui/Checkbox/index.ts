@@ -1,2 +1,2 @@
 export { default as Checkbox } from "./element";
-export { type CheckboxValue } from "./props";
+export { type CheckboxValue } from "./types";

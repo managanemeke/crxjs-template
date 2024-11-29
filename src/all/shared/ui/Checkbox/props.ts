@@ -1,6 +1,5 @@
 import {ChangeEventHandler} from "react";
-
-export type CheckboxValue = boolean | "indeterminate";
+import {CheckboxValue} from "./types";
 
 export default interface Props {
   checked: CheckboxValue;

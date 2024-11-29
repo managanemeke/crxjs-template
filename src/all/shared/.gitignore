@@ -7,4 +7,5 @@
 !/ui/*/element.tsx
 !/ui/*/index.ts
 !/*/*/props.ts
+!/*/*/types.ts
 !/.gitignore
