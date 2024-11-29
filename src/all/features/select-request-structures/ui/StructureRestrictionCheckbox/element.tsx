@@ -1,5 +1,5 @@
 import { Checkbox } from "shared/ui/Checkbox";
-import { CheckboxValue } from "shared/ui/Checkbox/Interface";
+import { CheckboxValue } from "shared/ui/Checkbox";
 import { Dispatch, SetStateAction, useLayoutEffect, useState } from "react";
 
 interface Props {

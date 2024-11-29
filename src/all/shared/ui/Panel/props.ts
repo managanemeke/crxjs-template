@@ -1,7 +1,7 @@
 import { ZoomBehavior } from "d3-zoom";
 import { Transition } from "d3-transition";
 
-export default interface Interface {
+export default interface Props {
   readonly zoomState?: {
     scale: number;
   },

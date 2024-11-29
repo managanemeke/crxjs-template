@@ -2,9 +2,9 @@ import clsx from "clsx";
 import { FC } from "react";
 
 import "./element.css";
-import { default as Interface } from "./Interface";
+import { default as ButtonProps } from "./props";
 
-export const Button: FC<Interface> = (props) => {
+export const Button: FC<ButtonProps> = (props) => {
   const {
     children,
     disabled = false,

@@ -6,5 +6,5 @@
 !/ui/*/element.css
 !/ui/*/element.tsx
 !/ui/*/index.ts
-!/*/*/Interface.ts
+!/*/*/props.ts
 !/.gitignore

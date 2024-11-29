@@ -1,7 +1,7 @@
 import "./element.css";
-import { default as IPanel } from "./Interface";
+import { default as PanelProps } from "./props";
 
-export const Panel = ({ zoomState, getCanvasState }: IPanel) => {
+export const Panel = ({ zoomState, getCanvasState }: PanelProps) => {
   const { scale } = zoomState ?? { scale: 0 };
 
   const onZoom = (action = "out") => {
