@@ -37,18 +37,18 @@ const nextCheckboxValue = (current: CheckboxValue): CheckboxValue => {
 }
 
 const Element = (props: Props) => {
-  const [checked, setChecked] = useState(false as CheckboxValue);
+  const [value, setValue] = useState(false as CheckboxValue);
   useLayoutEffect(() => {
     const next = nextValue(props.currentStructures, props.allStructures);
-    if (next !== checked) {
-      setChecked(next);
+    if (next !== value) {
+      setValue(next);
     }
   }, [props.allStructures]);
   return (
     <Checkbox
-      checked={checked}
+      value={value}
       onChange={() => {
-        switch (checked) {
+        switch (value) {
           case true:
           case "indeterminate":
             props.setAllStructures(previous => {
@@ -67,8 +67,8 @@ const Element = (props: Props) => {
             });
             break;
         }
-        const next = nextCheckboxValue(checked);
-        setChecked(next);
+        const next = nextCheckboxValue(value);
+        setValue(next);
         sendMessage(props).then();
       }}
       title={Array.from(props.currentStructures).join(", ")}

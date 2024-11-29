@@ -2,22 +2,22 @@ import { FC, useEffect, useRef } from "react";
 import { default as CheckboxProps } from "./props";
 
 const Checkbox: FC<CheckboxProps> = (props) => {
-  const { checked, onChange, title } = props;
+  const { value, onChange, title } = props;
   const ref = useRef<HTMLInputElement>(null);
   useEffect(() => {
-    const indeterminate = checked === "indeterminate";
+    const indeterminate = value === "indeterminate";
     if (
       indeterminate
       && ref.current
     ) {
       ref.current.indeterminate = true;
     }
-  }, [checked]);
+  }, [value]);
   return (
     <input
       type="checkbox"
       ref={ref}
-      checked={checked && checked !== "indeterminate"}
+      checked={value && value !== "indeterminate"}
       onChange={onChange}
       title={title ?? ""}
     />

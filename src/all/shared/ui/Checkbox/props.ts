@@ -1,8 +1,8 @@
-import {ChangeEventHandler} from "react";
 import {CheckboxValue} from "./types";
+import {ChangeEventHandler} from "react";
 
 export default interface Props {
-  checked: CheckboxValue;
+  value: CheckboxValue;
   onChange: ChangeEventHandler<HTMLInputElement>;
   title?: string;
 }
