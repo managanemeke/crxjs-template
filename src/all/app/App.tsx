@@ -22,8 +22,8 @@ export default function App() {
         style={{
           display: "grid",
           gridTemplateColumns: "auto auto auto",
-          gridTemplateRows: "auto auto",
-          gridAutoFlow: "column",
+          gridTemplateRows: "auto auto auto",
+          gridAutoFlow: "column"
         }}
       >
         {
@@ -31,15 +31,18 @@ export default function App() {
             token: token,
             request: request,
             currentStructuresArray: [
+              new Set([36, 37]),
               new Set([38, 39]),
-              new Set([40, 41]),
+              new Set([40, 41])
             ]
           })
         }
+        <div>36, 37</div>
         <div>38, 39</div>
         <div>40, 41</div>
         <div>first</div>
         <div>second</div>
+        <div>third</div>
       </div>
       <Button onClick={() => setCount((count) => count + 1)}>{String(count)}</Button>
       <Button onClick={handle.enter}>fullscreen</Button>

@@ -1,5 +1,6 @@
-import { Dispatch, SetStateAction, useLayoutEffect, useState } from "react";
 import { Checkbox } from "shared/ui/Checkbox";
+import { CheckboxValue } from "shared/ui/Checkbox/Interface";
+import { Dispatch, SetStateAction, useLayoutEffect, useState } from "react";
 
 interface Props {
   token: string;
@@ -9,19 +10,36 @@ interface Props {
   setAllStructures: Dispatch<SetStateAction<Set<number>>>;
 }
 
-const isCheckedNow = (current: Set<number>, all: Set<number>): boolean => {
+const nextValue = (current: Set<number>, all: Set<number>): CheckboxValue => {
+  let selected = 0;
   for (const number of Array.from(current.values())) {
-    if (!(all.has(number))) {
-      return false;
+    if (all.has(number)) {
+      selected++;
     }
   }
-  return true;
+  if (selected === current.size) {
+    return true;
+  }
+  if (selected === 0) {
+    return false;
+  }
+  return "indeterminate";
+}
+
+const nextCheckboxValue = (current: CheckboxValue): CheckboxValue => {
+  switch (current) {
+    case true:
+    case "indeterminate":
+      return false;
+    case false:
+      return true;
+  }
 }
 
 const Element = (props: Props) => {
-  const [checked, setChecked] = useState(false);
+  const [checked, setChecked] = useState(false as CheckboxValue);
   useLayoutEffect(() => {
-    const next = isCheckedNow(props.currentStructures, props.allStructures);
+    const next = nextValue(props.currentStructures, props.allStructures);
     if (next !== checked) {
       setChecked(next);
     }
@@ -30,22 +48,27 @@ const Element = (props: Props) => {
     <Checkbox
       checked={checked}
       onChange={() => {
-        setChecked(!checked);
-        if (!checked) {
-          props.setAllStructures(previous => {
-            for (const item of props.currentStructures) {
-              previous.add(item);
-            }
-            return previous;
-          });
-        } else {
-          props.setAllStructures(previous => {
-            for (const item of props.currentStructures) {
-              previous.delete(item);
-            }
-            return previous;
-          });
+        switch (checked) {
+          case true:
+          case "indeterminate":
+            props.setAllStructures(previous => {
+              for (const item of props.currentStructures) {
+                previous.delete(item);
+              }
+              return previous;
+            });
+            break;
+          case false:
+            props.setAllStructures(previous => {
+              for (const item of props.currentStructures) {
+                previous.add(item);
+              }
+              return previous;
+            });
+            break;
         }
+        const next = nextCheckboxValue(checked);
+        setChecked(next);
         sendMessage(props).then();
       }}
       title={Array.from(props.currentStructures).join(", ")}
