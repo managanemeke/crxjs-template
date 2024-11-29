@@ -1,7 +1,7 @@
 import { FC, useEffect, useRef } from "react";
-import { default as Interface } from "./Interface";
+import { default as CheckboxProps } from "./Interface";
 
-export const Checkbox: FC<Interface> = (props) => {
+const Checkbox: FC<CheckboxProps> = (props) => {
   const { checked, onChange, title } = props;
   const ref = useRef<HTMLInputElement>(null);
   useEffect(() => {
@@ -23,3 +23,5 @@ export const Checkbox: FC<Interface> = (props) => {
     />
   );
 };
+
+export default Checkbox;

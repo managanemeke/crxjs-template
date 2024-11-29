@@ -1,1 +1,1 @@
-export { Checkbox } from "./element";
+export { default as Checkbox } from "./element";
