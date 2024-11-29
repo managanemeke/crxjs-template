@@ -31,13 +31,13 @@ export default function App() {
             token: token,
             request: request,
             currentStructuresArray: [
-              new Set([113, 114]),
-              new Set([115, 116]),
+              new Set([38, 39]),
+              new Set([40, 41]),
             ]
           })
         }
-        <div>113, 114</div>
-        <div>115, 116</div>
+        <div>38, 39</div>
+        <div>40, 41</div>
         <div>first</div>
         <div>second</div>
       </div>

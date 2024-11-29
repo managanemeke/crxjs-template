@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { StructureRestrictionCheckbox } from "features/select-request-structures";
 
 interface Props {
@@ -7,18 +7,25 @@ interface Props {
   currentStructuresArray: Array<Set<number>>;
 }
 
-const allStructures: Set<number> = new Set();
-
 const Element = (props: Props) => {
   useEffect(() => {
+    const ids: Array<number> = [];
     const initAllStructures = async () => {
       const message = await getMessage(props);
       for (const item of message.inventories) {
-        allStructures.add(item.id);
+        ids.push(item.id);
       }
     }
-    initAllStructures().then();
-  }, [])
+    initAllStructures().then(() => {
+      setAllStructures((previous: Set<number>) => {
+        for (const item of ids) {
+          previous.add(item);
+        }
+        return new Set(previous) as Set<number>;
+      });
+    });
+  }, []);
+  const [allStructures, setAllStructures] = useState(new Set([37]) as Set<number>);
 
   const { token, request, currentStructuresArray } = props;
   const checkboxes = [];
@@ -28,7 +35,8 @@ const Element = (props: Props) => {
         token={token}
         request={request}
         currentStructures={currentStructures}
-        allStructures={allStructures}
+        allStructures={allStructures as Set<number>}
+        setAllStructures={setAllStructures}
       />
     )
   }

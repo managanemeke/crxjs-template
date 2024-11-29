@@ -1,4 +1,4 @@
-import React from "react";
+import { Dispatch, SetStateAction, useLayoutEffect, useState } from "react";
 import { Checkbox } from "shared/ui/Checkbox";
 
 interface Props {
@@ -6,23 +6,45 @@ interface Props {
   request: number;
   currentStructures: Set<number>;
   allStructures: Set<number>;
+  setAllStructures: Dispatch<SetStateAction<Set<number>>>;
+}
+
+const isCheckedNow = (current: Set<number>, all: Set<number>): boolean => {
+  for (const number of Array.from(current.values())) {
+    if (!(all.has(number))) {
+      return false;
+    }
+  }
+  return true;
 }
 
 const Element = (props: Props) => {
-  const [checked, setChecked] = React.useState(false);
+  const [checked, setChecked] = useState(false);
+  useLayoutEffect(() => {
+    const next = isCheckedNow(props.currentStructures, props.allStructures);
+    if (next !== checked) {
+      setChecked(next);
+    }
+  }, [props.allStructures]);
   return (
     <Checkbox
       checked={checked}
       onChange={() => {
         setChecked(!checked);
         if (!checked) {
-          for (const item of props.currentStructures) {
-            props.allStructures.add(item);
-          }
+          props.setAllStructures(previous => {
+            for (const item of props.currentStructures) {
+              previous.add(item);
+            }
+            return previous;
+          });
         } else {
-          for (const item of props.currentStructures) {
-            props.allStructures.delete(item);
-          }
+          props.setAllStructures(previous => {
+            for (const item of props.currentStructures) {
+              previous.delete(item);
+            }
+            return previous;
+          });
         }
         sendMessage(props).then();
       }}
