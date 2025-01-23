@@ -1,5 +1,4 @@
 import "./App.css";
-import {Button, Checkbox} from "antd";
 import { useEffect, useRef } from "react";
 
 export default function App() {
@@ -20,15 +19,6 @@ export default function App() {
       <button>
         toggle
       </button>
-      <Checkbox />
-      <Button
-        ref={buttonRef}
-        onClick={() => {
-          console.log("hi");
-        }}
-      >
-        toggle
-      </Button>
     </div>
   );
 }
