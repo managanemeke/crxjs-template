@@ -1,10 +1,11 @@
-import {useEffect, useRef} from "react";
+import "./App.css";
+import { useEffect, useRef } from "react";
 
 export default function App() {
-  let ref = useRef<HTMLDivElement | null>(null);
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    ref = useRef<HTMLDivElement>(null);
+    console.log(ref.current);
   }, []);
 
   return (
