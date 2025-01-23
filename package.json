@@ -21,6 +21,7 @@
     "@types/react": "19.0.0",
     "@types/react-dom": "19.0.0",
     "@vitejs/plugin-react": "4.3.4",
+    "ahooks": "3.8.4",
     "antd": "5.23.2",
     "clsx": "^2.1.1",
     "eslint": "^9.15.0",
