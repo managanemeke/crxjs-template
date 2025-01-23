@@ -1,4 +1,3 @@
-import "./App.css";
 import { Button } from "antd";
 import { useRef } from "react";
 
@@ -7,7 +6,7 @@ export default function App() {
 
   return (
     <div ref={ref} className="app">
-      <h1>Vite + React</h1>
+      <h1>Test</h1>
       <Button>
         toggle
       </Button>
