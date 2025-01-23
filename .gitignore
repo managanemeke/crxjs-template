@@ -10,3 +10,4 @@
 !/package.json
 !/tsconfig.json
 !/vite.config.js
+!/yarn.lock
