@@ -3,6 +3,9 @@
   "name": "app",
   "description": "app",
   "version": "0.0.0",
+  "chrome_url_overrides": {
+    "newtab": "src/blank/index.html"
+  },
   "action": {
     "default_popup": "src/popup/index.html"
   },

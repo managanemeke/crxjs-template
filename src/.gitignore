@@ -1,6 +1,7 @@
 *
 !/all
 !/background
+!/blank
 !/content
 !/popup
 !/.gitignore
